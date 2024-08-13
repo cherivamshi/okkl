@@ -1,0 +1,67 @@
+import React, { useState } from "react";
+import {
+    WppInput,
+    WppSelect,
+    WppTypography,
+    WppDatepicker,
+    WppContainer,
+    WppLabel,
+    WppDivider
+} from "@platform-ui-kit/components-library-react";
+
+export const TriggerDag = () => {
+    const [logicalDate, setLogicalDate] = useState(new Date());
+    const [runId, setRunId] = useState('');
+    const [selectedConfig, setSelectedConfig] = useState('');
+    const [surveys, setSurveys] = useState('');
+    const [testSuite, setTestSuite] = useState('');
+    const [projectId, setProjectId] = useState('');
+    const [useAscription, setUseAscription] = useState(true);
+
+    return (
+        <WppContainer>
+            <WppTypography variant="h4">Trigger DAG: ao_qa</WppTypography>
+            <WppLabel text="Logical date" />
+            <WppDatepicker
+                selected={logicalDate}
+                onChange={date => setLogicalDate(date)}
+            />
+            <WppLabel text="Run id (Optional)" />
+            <WppInput
+                placeholder="Run ID"
+                value={runId}
+                onChange={e => setRunId(e.target.value)}
+            />
+            <WppLabel text="Select Recent Configurations" />
+            <WppSelect
+                value={selectedConfig}
+                onChange={e => setSelectedConfig(e.target.value)}
+                placeholder="Default parameters"
+            >
+                {/* Options can be added here */}
+            </WppSelect>
+            <WppDivider />
+            <WppTypography variant="h6">DAG conf Parameters</WppTypography>
+            <WppLabel text="surveys" />
+            <WppInput
+                value={surveys}
+                onChange={e => setSurveys(e.target.value)}
+            />
+            <WppLabel text="test_suite" />
+            <WppInput
+                value={testSuite}
+                onChange={e => setTestSuite(e.target.value)}
+            />
+            <WppLabel text="project_id" />
+            <WppInput
+                value={projectId}
+                onChange={e => setProjectId(e.target.value)}
+            />
+            <WppLabel text="use_ascription" />
+            <WppInput
+                value={useAscription ? "true" : "false"}
+                onChange={e => setUseAscription(e.target.value === "true")}
+            />
+        </WppContainer>
+    );
+};
